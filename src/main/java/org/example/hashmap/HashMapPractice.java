@@ -1,4 +1,4 @@
-package org.example.threads;
+package org.example.hashmap;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

@@ -5,15 +5,15 @@ import java.util.LinkedList;
 
 public class CustomHasMap<K, V> {
 
-  int totalNoOfBuckets;
-  int totalNoOfElements;
+  int totalBuckets;
+  int totalElements;
   private LinkedList<Node<K, V>>[] buckets;
 
-  public CustomHasMap(int totalNoOfBuckets) {
-    this.totalNoOfBuckets = totalNoOfBuckets;
-    this.buckets = new LinkedList[totalNoOfBuckets];
+  public CustomHasMap(int totalBuckets) {
+    this.totalBuckets = totalBuckets;
+    this.buckets = new LinkedList[totalBuckets];
 
-    for (int i = 0; i < totalNoOfBuckets; i++) {
+    for (int i = 0; i < totalBuckets; i++) {
       buckets[i] = new LinkedList<>();
     }
   }
@@ -24,7 +24,7 @@ public class CustomHasMap<K, V> {
 
   private int getBucketIndex(Object key) {
     int hasValue = hasFunction(key);
-    return hasValue % totalNoOfBuckets;
+    return hasValue % totalBuckets;
   }
 
   private int searchInLinkedList(K key, int bucketIndex) {
@@ -48,9 +48,9 @@ public class CustomHasMap<K, V> {
     } else {
       Node<K, V> node = bucketLL.get(dataIndex);
       node.value = value;
-      totalNoOfElements++;
+      totalElements++;
 
-      double loadFactor = (double) totalNoOfElements / totalNoOfBuckets;
+      double loadFactor = (double) totalElements / totalBuckets;
       if (loadFactor > 2.0) {
         rehash();
       }
@@ -68,16 +68,16 @@ public class CustomHasMap<K, V> {
     LinkedList<Node<K, V>> bucket = buckets[bucketIndex];
     Node<K, V> removedValue = bucket.get(dataIndex);
     bucket.remove(dataIndex);
-    totalNoOfElements--;
+    totalElements--;
     return removedValue.value;
   }
 
   private void rehash() {
     LinkedList<Node<K, V>>[] oldBuckets = buckets;
-    int updatedSize = totalNoOfElements * 2;
+    int updatedSize = totalElements * 2;
 
     buckets = new LinkedList[updatedSize];
-    this.totalNoOfBuckets = updatedSize;
+    this.totalBuckets = updatedSize;
     for (int i = 0; i < buckets.length; i++) {
       buckets[i] = new LinkedList<>();
     }
