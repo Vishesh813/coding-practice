@@ -3,31 +3,31 @@ package org.example.threads;
 public class Runner {
 
     public static void main(String[] args) {
-/*   Counter counter = new Counter();
-   Thread t1 = new Thread(counter::printNumber);
-  Thread t2 = new Thread(counter::printNumber);
-  Thread t3 = new Thread(counter::printNumber);*/
-//
-//    t1.start();
-//    t2.start();
-//    t3.start();
-
-   /*     PingPongCounter counter = new PingPongCounter();
-
-        Thread even = new Thread(() -> counter.printEven("Even Thread"));
-        Thread odd = new Thread(() -> counter.printOdd("Odd Thread"));
-
-        odd.start();
-        even.start();*/
-
-/*        PrintInSequence printInSequence = new PrintInSequence();
-        Thread t1 = new Thread(printInSequence::print);
-        Thread t2 = new Thread(printInSequence::print);
-        Thread t3 = new Thread(printInSequence::print);
+/*      Counter counter = new Counter();
+        Thread t1 = new Thread(counter::printNumber);
+        Thread t2 = new Thread(counter::printNumber);
+        Thread t3 = new Thread(counter::printNumber);
 
         t1.start();
         t2.start();
         t3.start();*/
+
+/*      PingPongCounter pingPongCounter = new PingPongCounter();
+
+        Thread even = new Thread(() -> pingPongCounter.printEven("Even Thread"));
+        Thread odd = new Thread(() -> pingPongCounter.printOdd("Odd Thread"));
+
+        odd.start();
+        even.start();*/
+/*
+        PrintInSequence printInSequence = new PrintInSequence();
+        Thread thread = new Thread(printInSequence::print);
+        Thread thread1 = new Thread(printInSequence::print);
+        Thread thread2 = new Thread(printInSequence::print);
+
+        thread.start();
+        thread1.start();
+        thread2.start();*/
 
         FizBuzz fizBuzz = new FizBuzz(10);
 
@@ -37,7 +37,7 @@ public class Runner {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        },"A");
+        }, "A");
 
 
         Thread B = new Thread(() -> {
@@ -46,7 +46,7 @@ public class Runner {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        },"B");
+        }, "B");
 
         Thread C = new Thread(() -> {
             try {
@@ -54,7 +54,7 @@ public class Runner {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        },"C");
+        }, "C");
 
         Thread D = new Thread(() -> {
             try {
@@ -62,7 +62,7 @@ public class Runner {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        },"D");
+        }, "D");
 
         A.start();
         B.start();
